@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BookDisplay from './BookDisplay'
 
 function ShelfDisplay (props) {
    return (
@@ -7,7 +8,7 @@ function ShelfDisplay (props) {
          <div className="bookshelf-books"></div>
          <ol className="books-grid">
             {props.books.map((book) => (
-               <li>{book.id}</li>
+               <BookDisplay />
             ))}
          </ol>
       </div>
