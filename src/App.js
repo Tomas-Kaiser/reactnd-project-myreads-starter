@@ -10,11 +10,12 @@ class BooksApp extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books }) // It is as { book: book }
+      this.setState({ books }) // It is as { books: books }
     })
   }
 
   render() {
+    const { books } = this.state
     return (
       <div className="app">
           <div className="list-books">

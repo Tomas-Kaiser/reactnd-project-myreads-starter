@@ -7,9 +7,9 @@ function ShelfDisplay (props) {
          <h2 className="bookshelf-title">{props.shelfName}</h2>
          <div className="bookshelf-books"></div>
          <ol className="books-grid">
-            {props.books.map((book) => (
-               <BookDisplay />
-            ))}
+         {props.books.map((book) => (
+            <BookDisplay key={book.id} />
+          ))}
          </ol>
       </div>
    )
