@@ -1,9 +1,19 @@
 import React, {Component} from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './Utils/BooksAPI'
 import './App.css'
 import ShelfDisplay from './ShelfDisplay'
 
 class BooksApp extends Component {
+  state = {
+    books: []
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books }) // It is as { book: book }
+    })
+  }
+
   render() {
     return (
       <div className="app">
@@ -13,9 +23,11 @@ class BooksApp extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                <ShelfDisplay shelfName={'Currently reading'} />
-                <ShelfDisplay shelfName={'Want to read'} />
-                <ShelfDisplay shelfName={'Read'} />
+                <ShelfDisplay shelfName={'Currently reading'} books={books.filter((book) => book.shelf === 'currentlyReading')} />
+                <ShelfDisplay shelfName={'Want to read'} books={books.filter((book) => book.shelf === 'wantToRead')} 
+                />
+                <ShelfDisplay shelfName={'Read'} books={books.filter((book) => book.shelf === 'read')}
+                />
               </div>
             </div>
           </div>
