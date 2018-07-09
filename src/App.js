@@ -1,7 +1,38 @@
-import React from 'react'
+import React, {Component} from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
+import ShelfDisplay from './ShelfDisplay'
 
+class BooksApp extends Component {
+  render() {
+    return (
+      <div className="app">
+          <div className="list-books">
+            <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>
+            <div className="list-books-content">
+              <div>
+                <ShelfDisplay shelfName={'Currently reading'} />
+                <ShelfDisplay shelfName={'Want to read'} />
+                <ShelfDisplay shelfName={'Read'} />
+              </div>
+            </div>
+          </div>
+        </div>  
+    )
+  }
+}
+
+
+
+
+
+
+
+export default BooksApp
+
+/*
 class BooksApp extends React.Component {
   state = {
     /**
@@ -9,7 +40,7 @@ class BooksApp extends React.Component {
      * we're on, use the URL in the browser's address bar. This will ensure that
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
-     */
+     *
     showSearchPage: false
   }
 
@@ -28,7 +59,7 @@ class BooksApp extends React.Component {
 
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
-                */}
+                *}
                 <input type="text" placeholder="Search by title or author"/>
 
               </div>
@@ -202,5 +233,6 @@ class BooksApp extends React.Component {
     )
   }
 }
+*/
 
-export default BooksApp
+
