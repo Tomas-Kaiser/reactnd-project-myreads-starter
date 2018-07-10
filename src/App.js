@@ -9,11 +9,15 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
+     BooksAPI.getAll().then((books) => {
       this.setState({ books }) // It is as { books: books }
+
     })
+
+    BooksAPI.getAll().then(books => console.log('OBJECT', books))
   }
 
+  
   render() {
     const { books } = this.state
     return (
