@@ -8,7 +8,8 @@ function ShelfDisplay (props) {
          <div className="bookshelf-books"></div>
          <ol className="books-grid">
          {props.books.map((book) => (
-            <BookDisplay key={book.id} thumb={book.imageLinks.thumbnail} />
+            <BookDisplay key={book.id} thumb={book.imageLinks.thumbnail} bookToShow={book}
+            updateBookShelf={props.updateBookShelf}/>
           ))}
          </ol>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 class BookDisplay extends Component {
+
    render() {
       return (
       <div className="book">
@@ -8,7 +9,7 @@ class BookDisplay extends Component {
              <div className="book-cover" style={ { width: 128, height: 193, backgroundImage: `url(${this.props.thumb})`, backgroundSize: 'cover'  } }>
              </div>
              <div className="book-shelf-changer">
-                 <select                 >
+                 <select     onChange={this.props.updateBookShelf} >
                      <option value="none" disabled>Move to...</option>
                      <option value="currentlyReading">Currently Reading</option>
                      <option value="wantToRead">Want to Read</option>
@@ -17,11 +18,11 @@ class BookDisplay extends Component {
                  </select>
              </div>
          </div>
-         <div className="book-title"></div>
-         <div className="book-authors"></div>
+         <div className="book-title">{this.props.bookToShow.title}}</div>
+         <div className="book-authors">Author??</div>
      </div>
       )
    }
 }
 
-export default BookDisplay
+export default BookDisplay  
