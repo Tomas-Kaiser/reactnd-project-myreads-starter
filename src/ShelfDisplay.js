@@ -7,13 +7,21 @@ function ShelfDisplay (props) {
          <h2 className="bookshelf-title">{props.shelfName}</h2>
          <div className="bookshelf-books"></div>
          <ol className="books-grid">
-         {props.books.map((book) => (
-            <BookDisplay key={book.id} thumb={book.imageLinks.thumbnail} bookToShow={book}
-            updateBookShelf={props.updateBookShelf}/>
+          {props.books.map((book) => (
+            <li key={book.id}> 
+              <BookDisplay
+                id={book.id}
+                imageLinks={book.imageLinks}
+                title={book.title}
+                author={book.authors}
+                updateBookShelf={props.updateBookShelf}
+                shelf={book.shelf}
+                />
+            </li>
           ))}
          </ol>
       </div>
    )
-}
+  }
 
 export default ShelfDisplay

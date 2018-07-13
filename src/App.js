@@ -33,10 +33,19 @@ class BooksApp extends Component {
     const bookIndex = books.findIndex(isMatch)
     //console.log(books.findIndex(isMatch).title)
 
+    let stateBooks = Object.assign([], books)
 
-
-
-
+    if (bookIndex === -1) {
+      const newAddedBook = Object.assign({}, book)
+      newAddedBook.shelf = updatedShelf
+      stateBooks.push(newAddedBook)
+    } else {
+      stateBooks[bookIndex] = Object.assign({}, stateBooks[bookIndex])
+      stateBooks[bookIndex].shelf = updatedShelf
+    }
+    BooksAPI.update(book, updatedShelf).then(
+      this.setState({ books: stateBooks })
+    )
  }
 
   
@@ -49,10 +58,20 @@ class BooksApp extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                <ShelfDisplay shelfName={'Currently reading'} books={this.filterBooks('currentlyReading')} updateBookShelf={this.updateBookShelf} />
-                <ShelfDisplay shelfName={'Want to read'} books={this.filterBooks('wantToRead')} updateBookShelf={this.updateBookShelf} 
+                <ShelfDisplay
+                shelfName={'Currently reading'}
+                books={this.filterBooks('currentlyReading')}
+                updateBookShelf={this.updateBookShelf}
                 />
-                <ShelfDisplay shelfName={'Read'} books={this.filterBooks('read')} updateBookShelf={this.updateBookShelf}
+                <ShelfDisplay
+                shelfName={'Want to read'}
+                books={this.filterBooks('wantToRead')}
+                updateBookShelf={this.updateBookShelf} 
+                />
+                <ShelfDisplay
+                shelfName={'Read'}
+                books={this.filterBooks('read')}
+                updateBookShelf={this.updateBookShelf}
                 />
               </div>
             </div>
