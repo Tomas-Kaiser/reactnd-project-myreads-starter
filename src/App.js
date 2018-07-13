@@ -23,19 +23,21 @@ class BooksApp extends Component {
     return books.filter((book) => book.shelf === shelf )
   }
 
-  updateBookShelf = (book, newShelf) => {
-    BooksAPI.update(book, newShelf).then(data => {
-      const updatedBooks = this.state.books
+ updateBookShelf = (book, updatedShelf) => {
+    const { books } = this.state
 
-      Object.entries(data.currentlyReading).forEach(([keyData, updateData]) => {
-        //console.log(key + bookLoop.id)
-        if (updateData === bookLoop.id) {
-          bookLoop.shelf = "currentlyReading"
-        }
-      })
-    })
+    const isMatch = (key) => {    
+      return key.id === book.id   // Return true or false
+    }
 
-  }
+    const bookIndex = books.findIndex(isMatch)
+    //console.log(books.findIndex(isMatch).title)
+
+
+
+
+
+ }
 
   
   render() {
