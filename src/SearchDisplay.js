@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './Utils/BooksAPI'
 import BookDisplay from './BookDisplay'
+import { Link } from 'react-router-dom'
 
 
 class SearchDisplay extends Component {
@@ -17,7 +18,7 @@ class SearchDisplay extends Component {
          this.setState({ books: [] })
          return
       }
-      BooksAPI.search(queryTrim, 5).then((response) => {
+      BooksAPI.search(queryTrim).then((response) => {
          if (response && response.length) {
              const books = response.map((book) => {
                  const libBook = this.props.books.filter((libBook) => libBook.id === book.id)
@@ -43,12 +44,12 @@ class SearchDisplay extends Component {
       return (
          <div className="search-books">              
             <div className="search-books-bar">
-            <a
-                href=""
+            <Link
+                to="/"
                 className="close-search"
               >
               Close
-              </a>
+              </Link>
               <div className="search-books-input-wrapper">
                 <input
                     type="text"

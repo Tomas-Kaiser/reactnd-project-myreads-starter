@@ -7,7 +7,9 @@ function ShelfDisplay (props) {
          <h2 className="bookshelf-title">{props.shelfName}</h2>
          <div className="bookshelf-books"></div>
          <ol className="books-grid">
-          {props.books.map((book) => (
+          {props.books.sort((a, b) => {
+            return a.title > b.title
+          }).map((book) => (
             <li key={book.id}> 
               <BookDisplay
                 id={book.id}
