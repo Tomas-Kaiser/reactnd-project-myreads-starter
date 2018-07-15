@@ -1,10 +1,12 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import * as BooksAPI from './Utils/BooksAPI'
 import './App.css'
 import ShelfDisplay from './ShelfDisplay'
+import SearchDisplay from './SearchDisplay'
 
 class BooksApp extends Component {
   state = {
+    screen: 'ShelfDisplay', // SearchDisplay ShelfDisplay
     books: []
   }
 
@@ -52,30 +54,42 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <ShelfDisplay
+        {this.state.screen === 'ShelfDisplay' && (
+        <div className="list-books">
+          <div className="list-books-title">
+            <h1>MyReads</h1>
+          </div>
+          <div className="list-books-content">
+            <div>
+              <ShelfDisplay
                 shelfName={'Currently reading'}
                 books={this.filterBooks('currentlyReading')}
                 updateBookShelf={this.updateBookShelf}
-                />
-                <ShelfDisplay
+              />
+              <ShelfDisplay
                 shelfName={'Want to read'}
                 books={this.filterBooks('wantToRead')}
                 updateBookShelf={this.updateBookShelf} 
-                />
-                <ShelfDisplay
+              />
+              <ShelfDisplay
                 shelfName={'Read'}
                 books={this.filterBooks('read')}
                 updateBookShelf={this.updateBookShelf}
-                />
-              </div>
+              />
             </div>
           </div>
+          <div className="open-search">
+            <a href="">Add a book></a>
+          </div>
+        </div>
+        )}
+
+          {this.state.screen === 'SearchDisplay' && (
+                  <SearchDisplay 
+                  books={this.state.books}
+                  updateBookShelf={this.updateBookShelf}                  
+                />                   
+                )}
         </div>  
     )
   }
