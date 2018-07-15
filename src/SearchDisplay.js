@@ -41,6 +41,9 @@ class SearchDisplay extends Component {
 
 
    render() {
+      const { books } = this.state
+      const { updateBookShelf } = this.props
+
       return (
          <div className="search-books">              
             <div className="search-books-bar">
@@ -62,14 +65,14 @@ class SearchDisplay extends Component {
             <div className="search-books-results">
               <ol className="books-grid">
                     {
-                        this.state.books.map((book) => (
+                        books.map((book) => (
                            <li key={book.id}> 
                               <BookDisplay
                                  id={book.id}
                                  imageLinks={book.imageLinks}
                                  title={book.title}
                                  author={book.authors}
-                                 updateBookShelf={this.props.updateBookShelf}
+                                 updateBookShelf={updateBookShelf}
                                  shelf={book.shelf}
                              />
                            </li>
